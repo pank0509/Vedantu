@@ -77,7 +77,6 @@ class StaticalData extends Component {
           <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            // label={`Repositories ${public_repos}`}
             label={`Repositories 12`}
 
           />
@@ -89,7 +88,6 @@ class StaticalData extends Component {
           <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            // label={`Followers ${followers}`}
             label={`Followers 3`}
           />
           <Tab

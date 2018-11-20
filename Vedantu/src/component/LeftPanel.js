@@ -7,7 +7,6 @@ export default class LeftPanel extends Component {
   }
 
   render() {
-    console.log('This is props in left panel', this.props.profileData);
     return (
       <div>
         <div>
