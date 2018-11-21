@@ -61,6 +61,22 @@ class StaticalData extends Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
+    const repoLabel = (<div>
+      <span>Repositories</span>
+      <span className="bg-gray margin-left-5 padding-2">12</span>
+    </div>);
+    const starLabel = (<div>
+      <span>Stars</span>
+      <span className="bg-gray margin-left-5 padding-2">7</span>
+    </div>);
+    const followersLabel = (<div>
+      <span>Followers</span>
+      <span className="bg-gray margin-left-5 padding-2">3</span>
+    </div>);
+    const followingLabel = (<div>
+      <span>Following</span>
+      <span className="bg-gray margin-left-5 padding-2">2</span>
+    </div>);
     return (
       <div>
         <Tabs
@@ -77,24 +93,23 @@ class StaticalData extends Component {
           <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label={`Repositories 12`}
+            label={repoLabel}
 
           />
           <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label={`Stars 7`}
+            label={starLabel}
           />
           <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label={`Followers 3`}
+            label={followersLabel}
           />
           <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            // label={`Following ${following}`}
-            label={`Following 2`}
+            label={followingLabel}
           />
         </Tabs>
       </div>

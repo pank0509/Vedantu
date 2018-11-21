@@ -23,6 +23,7 @@ function mapDispatchToProps(dispatch) {
 class LandingPage extends React.Component {
   state = {
     ListOfRepo: [],
+    languageSelected: 'All',
   }
   componentDidMount() {
     this.props.getUserProfileInfo();
@@ -31,7 +32,7 @@ class LandingPage extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.vedantu.repoData !== nextProps.vedantu.repoData) {
       this.setState({
-        ListOfRepo: nextProps.vedantu.repoData,
+        ListOfRepo: nextProps.vedantu.repoData.sort(function (start, end) { return new Date(end.updated_at) - new Date(start.updated_at); }),
       });
     }
   }
@@ -47,7 +48,7 @@ class LandingPage extends React.Component {
       ((keys.name).toLowerCase()).startsWith((event.target.value).toLowerCase())
     ));
     this.setState({
-      ListOfRepo: listOfRepoAfterFilter,
+      ListOfRepo: listOfRepoAfterFilter.sort(function (start, end) { return new Date(end.updated_at) - new Date(start.updated_at); }),
     });
   }
   handleAnchorTagClicked = (value) => {
@@ -56,13 +57,15 @@ class LandingPage extends React.Component {
       keys.language === value
     ));
     this.setState({
-      ListOfRepo: listOfRepoAfterFilterA,
+      languageSelected: value,
+      ListOfRepo: listOfRepoAfterFilterA.sort(function (start, end) { return new Date(end.updated_at) - new Date(start.updated_at); }),
     });
   }
   resetLanguageFilter = () => {
     const listOfRepoBeforeLangFilter = this.props.vedantu.repoData ? this.props.vedantu.repoData : [];
     this.setState({
-      ListOfRepo: listOfRepoBeforeLangFilter,
+      languageSelected: 'All',
+      ListOfRepo: listOfRepoBeforeLangFilter.sort(function (start, end) { return new Date(end.updated_at) - new Date(start.updated_at); }),
     });
   }
   render() {
@@ -78,16 +81,16 @@ class LandingPage extends React.Component {
             <div>
               <StaticalData />
             </div>
-            <Row>
-              <Col lg={8} sm={6} xs={12} md={4} className="margin-top-20">
+            <div className="display-flex-only display-flex-wrap">
+              <span className="margin-top-20 margin-right-20">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Find a repository..."
                   onChange={this.handleSearchResultChange}
                 />
-              </Col>
-              <Col lg={2} sm={3} xs={6} md={4} className="dropdown margin-top-20">
+              </span>
+              <span className="dropdown margin-top-20 margin-right-20">
                 <button className="btn btn-default dropdown-toggle full-width edit-bio-button-style" type="button" data-toggle="dropdown">
                   <span>Type: </span>
                   <span className="font-bold">All</span>
@@ -104,11 +107,11 @@ class LandingPage extends React.Component {
                   <li><a href="#">Archive</a></li>
                   <li><a href="#">Mirrors</a></li>
                 </ul>
-              </Col>
-              <Col lg={2} sm={3} xs={6} md={4} className="dropdown margin-top-20">
+              </span>
+              <span className="dropdown margin-top-20">
                 <button className="btn btn-default dropdown-toggle full-width edit-bio-button-style padding-left-5" type="button" data-toggle="dropdown">
                   <span>Language: </span>
-                  <span className="font-bold">All</span>
+                  <span className="font-bold">{this.state.languageSelected}</span>
                   <span className="caret"></span>
                 </button>
                 <ul className="dropdown-menu full-width padding-top-0">
@@ -116,13 +119,29 @@ class LandingPage extends React.Component {
                     <span className="margin-left-5">Select type:</span>
                     <span className="float-right margin-right-5"><i className="fa fa-times" aria-hidden="true" /></span>
                   </li>
-                  <li onClick={this.resetLanguageFilter}><a href="#">All</a></li>
-                  <li onClick={() => this.handleAnchorTagClicked('HTML')}><a href="#">HTML</a></li>
-                  <li onClick={() => this.handleAnchorTagClicked('JavaScript')}><a href="#">JavaScript</a></li>
-                  <li onClick={() => this.handleAnchorTagClicked('CSS')}><a href="#">CSS</a></li>
+                  <li onClick={this.resetLanguageFilter}>
+                    <a href="#">
+                      All
+                    </a>
+                  </li>
+                  <li onClick={() => this.handleAnchorTagClicked('HTML')}>
+                    <a href="#">
+                      HTML
+                    </a>
+                  </li>
+                  <li onClick={() => this.handleAnchorTagClicked('JavaScript')}>
+                    <a href="#">
+                      JavaScript
+                    </a>
+                  </li>
+                  <li onClick={() => this.handleAnchorTagClicked('CSS')}>
+                    <a href="#">
+                      CSS
+                    </a>
+                  </li>
                 </ul>
-              </Col>
-            </Row>
+              </span>
+            </div>
             <hr />
             {this.state.ListOfRepo.map(keys => (
               <div key={keys.id}>
