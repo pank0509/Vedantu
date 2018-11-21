@@ -81,16 +81,16 @@ class LandingPage extends React.Component {
             <div>
               <StaticalData />
             </div>
-            <div className="display-flex-only display-flex-wrap">
-              <span className="margin-top-20 margin-right-20">
+            <Row>
+              <Col lg={8} sm={6} xs={12} md={4} className="margin-top-20">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Find a repository..."
                   onChange={this.handleSearchResultChange}
                 />
-              </span>
-              <span className="dropdown margin-top-20 margin-right-20">
+              </Col>
+              <Col lg={2} sm={3} xs={6} md={4} className="dropdown margin-top-20">
                 <button className="btn btn-default dropdown-toggle full-width edit-bio-button-style" type="button" data-toggle="dropdown">
                   <span>Type: </span>
                   <span className="font-bold">All</span>
@@ -107,8 +107,8 @@ class LandingPage extends React.Component {
                   <li><a href="#">Archive</a></li>
                   <li><a href="#">Mirrors</a></li>
                 </ul>
-              </span>
-              <span className="dropdown margin-top-20">
+              </Col>
+              <Col lg={2} sm={3} xs={6} md={4} className="dropdown margin-top-20">
                 <button className="btn btn-default dropdown-toggle full-width edit-bio-button-style padding-left-5" type="button" data-toggle="dropdown">
                   <span>Language: </span>
                   <span className="font-bold">{this.state.languageSelected}</span>
@@ -140,8 +140,8 @@ class LandingPage extends React.Component {
                     </a>
                   </li>
                 </ul>
-              </span>
-            </div>
+              </Col>
+            </Row>
             <hr />
             {this.state.ListOfRepo.map(keys => (
               <div key={keys.id}>
