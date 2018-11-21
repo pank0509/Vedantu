@@ -111,7 +111,7 @@ class LandingPage extends React.Component {
               <Col lg={2} sm={3} xs={6} md={4} className="dropdown margin-top-20">
                 <button className="btn btn-default dropdown-toggle full-width edit-bio-button-style padding-left-5" type="button" data-toggle="dropdown">
                   <span>Language: </span>
-                  <span className="font-bold">{this.state.languageSelected}</span>
+                  <span className="font-bold">All</span>
                   <span className="caret"></span>
                 </button>
                 <ul className="dropdown-menu full-width padding-top-0">
